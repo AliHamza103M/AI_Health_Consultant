@@ -1,0 +1,80 @@
+/* =========================
+   MAIN APP
+========================= */
+
+.stApp {
+    background-color: #f5f7fa;
+}
+
+/* =========================
+   TITLE
+========================= */
+
+h1 {
+    color: #0f172a;
+    font-weight: bold;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+section[data-testid="stSidebar"] {
+    background-color: #0f172a;
+}
+
+section[data-testid="stSidebar"] * {
+    color: white;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.stButton > button {
+    background-color: #2563eb;
+    color: white;
+    border-radius: 10px;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.stButton > button:hover {
+    background-color: #1d4ed8;
+    color: white;
+}
+
+/* =========================
+   METRICS
+========================= */
+
+div[data-testid="metric-container"] {
+    background-color: white;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0px 2px 10px rgba(0,0,0,0.1);
+}
+
+/* =========================
+   TABLES
+========================= */
+
+[data-testid="stDataFrame"] {
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+/* =========================
+   INPUTS
+========================= */
+
+.stTextInput > div > div > input {
+    border-radius: 10px;
+}
+
+.stSelectbox > div > div {
+    border-radius: 10px;
+}
