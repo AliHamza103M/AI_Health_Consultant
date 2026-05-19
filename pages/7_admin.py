@@ -16,6 +16,24 @@ st.set_page_config(
 load_css()
 
 # =========================
+# ADMIN SECURITY
+# =========================
+
+if "username" not in st.session_state:
+
+    st.error("Please login first 🔐")
+
+    st.stop()
+
+# only admin allowed
+
+if st.session_state["username"] != "admin":
+
+    st.error("Access Denied 🚫")
+
+    st.stop()
+
+# =========================
 # PAGE TITLE
 # =========================
 

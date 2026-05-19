@@ -1,82 +1,91 @@
 import streamlit as st
+import base64
+
+# =========================
+# IMAGE FUNCTION
+# =========================
+
+def get_base64(file_path):
+
+    with open(file_path, "rb") as f:
+
+        data = f.read()
+
+    return base64.b64encode(data).decode()
+
+# =========================
+# LOAD CSS
+# =========================
 
 def load_css():
 
-    st.markdown("""
+    bg_image = get_base64("assets/bg.png")
+
+    st.markdown(f"""
     <style>
 
-    /* MAIN BACKGROUND */
+    /* =========================
+       MAIN BACKGROUND
+    ========================= */
 
-    .stApp {
-        background-color: #f4f7fc;
-    }
+    .stApp {{
+        background-image: url("data:image/png;base64,{bg_image}");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+    }}
 
-    /* SIDEBAR */
+    /* =========================
+       HIDE OLD STREAMLIT MENU
+    ========================= */
 
-    section[data-testid="stSidebar"] {
-        background-color: #020c2b;
-    }
+    section[data-testid="stSidebarNav"] > ul {{
+        display: none;
+    }}
 
-    section[data-testid="stSidebar"] * {
-        color: white;
-    }
+    /* =========================
+       SIDEBAR
+    ========================= */
 
-    /* HEADINGS */
+    section[data-testid="stSidebar"] {{
+        background: rgba(0, 15, 45, 0.95);
+        border-right: 2px solid #2563eb;
+    }}
 
-    h1, h2, h3 {
-        color: #111827;
-        font-weight: 800;
-    }
+    /* =========================
+       SIDEBAR TEXT
+    ========================= */
 
-    /* BUTTONS */
-
-    button[kind="primary"] {
-        background-color: #2563eb !important;
+    section[data-testid="stSidebar"] * {{
         color: white !important;
-        border-radius: 10px !important;
-        border: none !important;
-        height: 50px !important;
-        font-size: 18px !important;
+        font-size: 21px !important;
         font-weight: bold !important;
-    }
+    }}
 
-    button[kind="primary"]:hover {
-        background-color: #1d4ed8 !important;
+    /* =========================
+       CUSTOM BUTTONS
+    ========================= */
+
+    div[data-testid="stSidebarNav"] a {{
+        background-color: rgba(255,255,255,0.08);
+        border-radius: 14px;
+        margin-bottom: 10px;
+        padding: 12px;
+        transition: 0.3s;
+    }}
+
+    div[data-testid="stSidebarNav"] a:hover {{
+        background: #2563eb;
+        transform: scale(1.02);
+    }}
+
+    /* =========================
+       MAIN TEXT
+    ========================= */
+
+    h1,h2,h3,h4,h5,h6,p,li {{
         color: white !important;
-    }
-
-    /* NORMAL BUTTONS */
-
-    .stButton button {
-        background-color: #2563eb !important;
-        color: white !important;
-        border-radius: 10px !important;
-        border: none !important;
-        padding: 10px 20px !important;
-        font-weight: bold !important;
-    }
-
-    .stButton button:hover {
-        background-color: #1d4ed8 !important;
-        color: white !important;
-    }
-
-    /* CARDS */
-
-    div[data-testid="metric-container"] {
-        background-color: white;
-        border-radius: 12px;
-        padding: 15px;
-        box-shadow: 0px 2px 12px rgba(0,0,0,0.1);
-    }
-
-    /* TABLE */
-
-    .stDataFrame {
-        background-color: white;
-        border-radius: 12px;
-        padding: 10px;
-    }
+    }}
 
     </style>
     """, unsafe_allow_html=True)

@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import joblib
 import sqlite3
-
+import os
 from utils.style import load_css
 from utils.recommendation import get_recommendation
 from utils.pdf_report import generate_pdf_report
@@ -26,18 +26,32 @@ st.set_page_config(
     layout="wide"
 )
 
+# =========================
+# LOAD CSS
+# =========================
+
 load_css()
+BASE_DIR = os.path.dirname(
+    os.path.dirname(
+        os.path.abspath(__file__)
+    )
+)
 
-# =========================
-# LOAD MODEL
-# =========================
+model_path = os.path.join(
+    BASE_DIR,
+    "model.pkl"
+)
 
-model = joblib.load("model.pkl")
-
-label_encoder = joblib.load(
+encoder_path = os.path.join(
+    BASE_DIR,
     "label_encoder.pkl"
 )
 
+model = joblib.load(model_path)
+
+label_encoder = joblib.load(
+    encoder_path
+)
 # =========================
 # DATABASE CONNECTION
 # =========================
@@ -52,13 +66,17 @@ cursor = conn.cursor()
 # TITLE
 # =========================
 
-st.title(
-    "🩺 AI Disease Prediction System"
-)
+st.markdown("""
+<h1 style='color:white; text-align:center;'>
+🩺 AI Disease Prediction System
+</h1>
+""", unsafe_allow_html=True)
 
-st.write(
-    "Select symptoms and predict disease."
-)
+st.markdown("""
+<p style='color:white; text-align:center; font-size:20px;'>
+Select symptoms and predict disease.
+</p>
+""", unsafe_allow_html=True)
 
 # =========================
 # SYMPTOMS LIST
@@ -170,9 +188,11 @@ symptoms = [
 
 selected_symptoms = []
 
-st.subheader(
-    "Select Symptoms"
-)
+st.markdown("""
+<h3 style='color:white;'>
+Select Symptoms
+</h3>
+""", unsafe_allow_html=True)
 
 cols = st.columns(3)
 
@@ -190,12 +210,60 @@ for index, symptom in enumerate(symptoms):
             selected_symptoms.append(
                 symptom
             )
+# =========================
+# BUTTON STYLING
+# =========================
 
+st.markdown("""
+<style>
+
+/* Predict Button */
+
+div.stButton > button {
+    background: #007BFF;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 12px;
+    padding: 12px 30px;
+    border: none;
+    width: 100%;
+}
+
+/* Hover Effect */
+
+div.stButton > button:hover {
+    background: #0056D2;
+    color: white;
+}
+
+/* Download PDF Button */
+
+div.stDownloadButton > button {
+    background: #007BFF;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 12px;
+    padding: 12px 25px;
+    border: none;
+    width: 100%;
+}
+
+/* Hover */
+
+div.stDownloadButton > button:hover {
+    background: #0056D2;
+    color: white;
+}
+
+</style>
+""", unsafe_allow_html=True)
 # =========================
 # PREDICT BUTTON
 # =========================
 
-if st.button("Predict Disease"):
+if st.button("🔍 Predict Disease"):
 
     input_data = {}
 
