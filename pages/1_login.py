@@ -71,6 +71,20 @@ if st.button("Login"):
 
         st.session_state["email"] = user[2]
 
+        # =========================
+        # ADMIN ACCESS
+        # =========================
+
+        ADMIN_EMAIL = "alihamza@gmail.com"
+
+        if email == ADMIN_EMAIL:
+
+            st.session_state["is_admin"] = True
+
+        else:
+
+            st.session_state["is_admin"] = False
+
         st.balloons()
 
         st.write(f"Welcome, {user[1]}")
