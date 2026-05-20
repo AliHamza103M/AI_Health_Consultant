@@ -25,9 +25,11 @@ if "username" not in st.session_state:
 
     st.stop()
 
-# only admin allowed
+# =========================
+# ADMIN EMAIL ACCESS
+# =========================
 
-if st.session_state["username"] != "admin":
+if not st.session_state.get("is_admin"):
 
     st.error("Access Denied 🚫")
 
