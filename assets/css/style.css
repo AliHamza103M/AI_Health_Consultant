@@ -66,15 +66,122 @@ div[data-testid="metric-container"] {
     border-radius: 10px;
     padding: 10px;
 }
-
 /* =========================
    INPUTS
 ========================= */
 
-.stTextInput > div > div > input {
+.stTextInput input,
+.stNumberInput input,
+.stSelectbox div,
+.stMultiSelect div {
+    border-radius: 10px;
+    border: 1px solid #cbd5e1;
+}
+
+/* =========================
+   DOWNLOAD BUTTON
+========================= */
+
+.stDownloadButton > button {
+    background-color: #2563eb;
+    color: white;
+    border-radius: 10px;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.stDownloadButton > button:hover {
+    background-color: #1d4ed8;
+    color: white;
+}
+
+/* =========================
+   LINK BUTTON
+   (Nearby Hospital Button)
+========================= */
+
+div[data-testid="stLinkButton"] a {
+    background-color: #2563eb !important;
+    color: white !important;
+    border-radius: 10px !important;
+    padding: 12px 20px !important;
+    font-weight: bold !important;
+    text-decoration: none !important;
+    border: none !important;
+}
+
+div[data-testid="stLinkButton"] a:hover {
+    background-color: #1d4ed8 !important;
+    color: white !important;
+}
+
+/* =========================
+   SUCCESS BOX
+========================= */
+
+div[data-testid="stAlert"] {
     border-radius: 10px;
 }
 
-.stSelectbox > div > div {
+/* =========================
+   CARDS
+========================= */
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 3px 12px rgba(0,0,0,0.1);
+}
+
+/* =========================
+   HOSPITAL MAP
+========================= */
+
+iframe {
+    border-radius: 15px;
+    border: 2px solid #2563eb;
+}
+
+/* =========================
+   SCROLLBAR
+========================= */
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #e2e8f0;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #2563eb;
     border-radius: 10px;
 }
+
+::-webkit-scrollbar-thumb:hover {
+    background: #1d4ed8;
+}
+st.markdown(
+    f"""
+    <a href="{google_maps_url}" target="_blank">
+        <button style="
+            background-color:#2363eb;
+            color:blue;
+            border:none;
+            border-radius:10px;
+            padding:12px 25px;
+            font-size:18px;
+            font-weight:bold;
+            cursor:pointer;
+            width:100%;
+        ">
+            🏥 View Nearby Hospitals
+        </button>
+    </a>
+    """,
+    unsafe_allow_html=True
+)
