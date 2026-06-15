@@ -31,22 +31,11 @@ st.set_page_config(
 # =========================
 
 load_css()
-BASE_DIR = os.path.dirname(
-    os.path.dirname(
-        os.path.abspath(__file__)
-    )
-)
+model_path = "model.pkl"
+encoder_path = "label_encoder.pkl"
 
-model_path = os.path.join(
-    BASE_DIR,
-    "model.pkl"
-)
-
-encoder_path = os.path.join(
-    BASE_DIR,
-    "label_encoder.pkl"
-)
-
+model = joblib.load(model_path)
+label_encoder = joblib.load(encoder_path)
 model = joblib.load(model_path)
 
 label_encoder = joblib.load(
